@@ -1,0 +1,13 @@
+#ABC easy as 123
+
+arr1 = ("A".."Z").to_a
+arr2 = ("a".."z").to_a
+
+p arr1.zip(arr2).flatten #zip is like a zipper.
+
+#you can refactor this using map: 
+arr = []
+("a".."z").each do |letter|
+	arr.push(letter, letter.upcase)
+end
+p arr
