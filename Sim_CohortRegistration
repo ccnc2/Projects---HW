@@ -1,0 +1,66 @@
+#Add students to cohorts
+#and have they paid
+
+class Cohort
+
+	attr_reader :hashtag    #to be able to read it outside this class
+
+
+	def initialize
+		@students = []
+		@hashtag = ""
+	end
+	
+
+	def add_student(student_name)
+		@students.push(Person.new(student_name))
+	end 
+
+	def list_students
+		@students.each do |student|
+			puts student.name
+		end
+	end
+
+	def set_hashtag(hashtag)
+		@hashtag = hashtag
+	end
+
+	def find_student(student_name)
+		result = @students.select  do |student|  #whatever is in this block needs to return true
+			student.name == student_name
+		end
+		result.pop   #pop will pop the last value out of the array
+	end
+
+end
+
+class Person
+
+	attr_reader :name
+	attr_accessor :remaining_balance
+
+	def initialize(name)
+		@name = name
+		@remaining_balance = 10_000
+	end
+
+	
+
+end
+
+
+def test
+
+	cohort5 = Cohort.new
+	cohort5.add_student("Enide")
+	cohort5.add_student("Walter")
+	cohort5.list_students
+	cohort5.set_hashtag("#All I do with Wyn")
+	puts cohort5.hashtag
+	enide = cohort5.find_student("Enide")
+	p enide.remaining_balance
+
+end
+
+test
